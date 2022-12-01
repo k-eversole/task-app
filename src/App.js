@@ -1,4 +1,4 @@
-import { uniqueId } from "lodash";
+import uniqid from "uniqid";
 import React, { Component } from "react";
 import Overview from './components/Overview';
 
@@ -10,6 +10,7 @@ class App extends Component {
       task: {
         text: '',
         count: 1,
+        id: uniqid()
       },
       tasks: [],
 
@@ -33,21 +34,22 @@ class App extends Component {
   addTask = (e) => {
     e.preventDefault();
     this.setState({
-      tasks: [...this.state.tasks, this.state.task],
+      tasks: this.state.tasks.concat(this.state.task),
       task: {
         text: '',
         count: this.state.task.count + 1,
-        id: uniqueId()
+        id: uniqid()
       },
-    });
+    })
   }
 
   removeTask = (e) => {
     e.preventDefault();
-    const id = e.target.parentNode.id
+    const target = this.state.tasks.id
+    console.log(target)
+    const filtered = this.state.tasks.filter((task) => task.id !== target)
     this.setState({
-      tasks: [this.state.tasks.filter((task) => id !== task.id)],
-
+      tasks: filtered,
     })
   }
 
@@ -67,7 +69,7 @@ class App extends Component {
       </label><button type="submit">Button</button>
       <Overview
       tasks={tasks}
-      taskRemove = {this.removeTask}
+      taskRemove={this.removeTask}
       />
     </form>
     )

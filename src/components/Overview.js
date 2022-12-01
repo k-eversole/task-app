@@ -3,15 +3,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 
 const Overview = (props) => {
-    const { tasks } = props;
+    const { tasks, taskRemove } = props;
 
     return (
         <div>
         <ul>
             {tasks.map((element) =>
                 <li key={element.id}>
-                    {element.count}{element.text}
-                    <FontAwesomeIcon icon={ faCoffee } onClick ={this.TaskRemove}></FontAwesomeIcon>
+                    {element.count}: {element.text}
+                    <FontAwesomeIcon icon={ faCoffee } onClick={taskRemove}></FontAwesomeIcon>
                     </li> )}
         </ul>
         </div>

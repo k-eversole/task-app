@@ -15,10 +15,6 @@ class App extends Component {
       tasks: [],
 
     };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.addTask = this.addTask.bind(this);
-    this.removeTask = this.removeTask.bind(this);
   }
 
   handleChange = (e) => {
@@ -43,15 +39,9 @@ class App extends Component {
     })
   }
 
-  removeTask = (e) => {
-    e.preventDefault();
-    const target = this.state.tasks.id
-    console.log(target)
-    const filtered = this.state.tasks.filter((task) => task.id !== target)
-    this.setState({
-      tasks: filtered,
-    })
-  }
+  removeTask = (elementId) => {
+    console.log(elementId);
+}
 
   render() {
     const { task, tasks } = this.state;

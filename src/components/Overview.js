@@ -11,7 +11,7 @@ const Overview = (props) => {
             {tasks.map((element) =>
                 <li key={element.id}>
                     {element.count}: {element.text}
-                    <FontAwesomeIcon icon={ faCoffee } onClick={taskRemove}></FontAwesomeIcon>
+                    <FontAwesomeIcon icon={ faCoffee } onClick={taskRemove(element.id)}></FontAwesomeIcon>
                     </li> )}
         </ul>
         </div>

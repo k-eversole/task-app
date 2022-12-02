@@ -1,21 +1,19 @@
 import React from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 
-const Overview = (props) => {
-    const { tasks, taskRemove } = props;
-
+class Overview extends React.Component {
+  render() {
     return (
-        <div>
+      <div>
         <ul>
-            {tasks.map((element) =>
-                <li key={element.id}>
-                    {element.count}: {element.text}
-                    <FontAwesomeIcon icon={ faCoffee } onClick={taskRemove(element.id)}></FontAwesomeIcon>
-                    </li> )}
+          {this.props.tasks.map((task) => (
+            <li key={task.id}>
+              {task.count}: {task.text}
+              <button onClick={() => this.props.taskRemove(task.id)}>x</button>
+            </li>
+          ))}
         </ul>
-        </div>
-        );
+      </div>
+    );
+  }
 }
-
 export default Overview;

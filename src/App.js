@@ -1,6 +1,6 @@
 import uniqid from "uniqid";
 import React, { Component } from "react";
-import Overview from './components/Overview';
+import Overview from "./components/Overview";
 
 class App extends Component {
   constructor() {
@@ -8,12 +8,11 @@ class App extends Component {
 
     this.state = {
       task: {
-        text: '',
+        text: "",
         count: 1,
-        id: uniqid()
+        id: uniqid(),
       },
       tasks: [],
-
     };
   }
 
@@ -32,37 +31,37 @@ class App extends Component {
     this.setState({
       tasks: this.state.tasks.concat(this.state.task),
       task: {
-        text: '',
+        text: "",
         count: this.state.task.count + 1,
-        id: uniqid()
+        id: uniqid(),
       },
-    })
-  }
+    });
+  };
 
   removeTask = (elementId) => {
-    console.log(elementId);
-}
+    this.setState({
+      tasks: this.state.tasks.filter((task) => task.id !== elementId),
+    });
+  };
 
   render() {
     const { task, tasks } = this.state;
 
     return (
-    <form onSubmit = {this.addTask}>
-      <label>
-        Input:
-        <input
-          onChange={this.handleChange}
-          value = {task.text}
-          type="text"
-          id="taskInput"
-        />
-      </label><button type="submit">Button</button>
-      <Overview
-      tasks={tasks}
-      taskRemove={this.removeTask}
-      />
-    </form>
-    )
+      <form onSubmit={this.addTask}>
+        <label>
+          Input:
+          <input
+            onChange={this.handleChange}
+            value={task.text}
+            type="text"
+            id="taskInput"
+          />
+        </label>
+        <button type="submit">Button</button>
+        <Overview tasks={tasks} taskRemove={this.removeTask} />
+      </form>
+    );
   }
 }
 
